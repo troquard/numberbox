@@ -198,7 +198,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void actionNextLevel(View v) {
         currentLevel = (currentLevel + 1) % numberOfLevels();
-        updateLevelInfo();
         state = getLevelInitialState(currentLevel);
         myDisplay.showState(state);
         updateLevelInfo();
