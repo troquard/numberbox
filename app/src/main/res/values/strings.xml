@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">NumberBox</string>
+    <string name="retry">retry</string>
+    <string name="next">next</string>
+    <string name="pushmode">push\nmode</string>
+    <string name="jumpmode">jump\nmode</string>
+    <string name="level">LEVEL %d</string>
+    <string name="levelcompleted">LEVEL %d\nCOMPLETED</string>
+    <string name="levellost">LEVEL %d\nLOST</string>
+</resources>
