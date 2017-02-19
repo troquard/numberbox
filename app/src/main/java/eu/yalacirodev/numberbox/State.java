@@ -26,11 +26,13 @@ class State implements Serializable {
     private int[][] matrix;
     private int posX;
     private int posY;
+    private String levelName;
 
-    State(int[][] matrix, int posX, int posY) {
+    State(int[][] matrix, int posX, int posY, String name) {
         this.matrix = matrix;
         this.posX = posX;
         this.posY = posY;
+        this.levelName = name;
     }
 
     /*
@@ -45,6 +47,7 @@ class State implements Serializable {
         }
         this.posX = state.posX;
         this.posY = state.posY;
+        this.levelName = state.levelName;
     }
 
     /*
@@ -82,6 +85,7 @@ class State implements Serializable {
         this.matrix = matrix;
         this.posX = jo.getInt("X");
         this.posY = jo.getInt("Y");
+        this.levelName = jo.getString("name");
 
     }
 
@@ -99,6 +103,10 @@ class State implements Serializable {
 
     int getPosY() {
         return this.posY;
+    }
+
+    String getLevelName() {
+        return this.levelName;
     }
 
     int getHeight(int x, int y) {

@@ -19,6 +19,8 @@ public class BestScores extends SQLiteOpenHelper {
     private static final String L_NAME = "level_id";
     private static final String L_BEST = "level_best";
 
+    public static final int DEFAULT_BEST = 99999;
+
     public static BestScores getInstance(Context ctx) {
 
         // Use the application context, which will ensure that you
@@ -65,7 +67,7 @@ public class BestScores extends SQLiteOpenHelper {
     public Boolean deleteData(String name) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String whereClause = L_NAME + " = " + name;
+        String whereClause = L_NAME + " = " + "'" + name + "'" + " ;";
         long result = db.delete(SCORE_TABLE, whereClause, null);
 
         // exactly one row has been deleted?
@@ -78,7 +80,7 @@ public class BestScores extends SQLiteOpenHelper {
 
         String query = "UPDATE " + SCORE_TABLE +
                 " SET " + L_BEST + " = " + best +
-                " WHERE " + L_NAME + " = " + name;
+                " WHERE " + L_NAME + " = " + "'" + name + "'" + " ;";
 
         db.execSQL(query);
     }
@@ -86,7 +88,7 @@ public class BestScores extends SQLiteOpenHelper {
     public int getBest(String name) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT " + L_BEST + " FROM " + SCORE_TABLE
-                + " WHERE " + L_NAME + " = " + name + " ;";
+                + " WHERE " + L_NAME + " = " + "'" + name + "'" + " ;";
         Cursor cursor = db.rawQuery(query, null);
         int best;
         if (cursor.moveToFirst()) { // first row of the cursor
@@ -95,7 +97,7 @@ public class BestScores extends SQLiteOpenHelper {
             return best;
         } else {
             cursor.close();
-            return 99999; // default best
+            return DEFAULT_BEST;
         }
     }
 
@@ -106,13 +108,13 @@ public class BestScores extends SQLiteOpenHelper {
     }
 
 
-    public void updateBestIfNecessary(String name, int best) {
-        if (insertData(name, best)) {
+    public void updateBestIfNecessary(String name, int numMoves) {
+        if (insertData(name, numMoves)) {
             return;
         }
         int oldBest = getBest(name);
-        if (best < oldBest) {
-            updateData(name, best);
+        if (numMoves < oldBest) {
+            updateData(name, numMoves);
         }
     }
 }
