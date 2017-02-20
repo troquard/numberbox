@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private StateView myDisplay;
     private State state;
     private int currentLevel;
-    private int numMoves; // best-score
+    private int numMoves;
     private boolean jumpMode;
     private BestScores bestScores;
     private Context context;
@@ -123,9 +123,16 @@ public class MainActivity extends AppCompatActivity {
     /* BEST SCORES MANAGEMENT */
 
     private void updateScores() {
-        if (state.isWinning()) {
-            bestScores.updateBestIfNecessary(state.getLevelName(), numMoves);
+        if (!state.isWinning()) {
+            return;
         }
+
+        int currentBestScore = bestScores.getBest(state.getLevelName());
+
+        if (currentBestScore == BestScores.NOT_COMPLETED)
+            bestScores.insertData(state.getLevelName(), numMoves);
+        else if (numMoves < currentBestScore)
+            bestScores.updateData(state.getLevelName(), numMoves);
     }
 
     private static final String NO_STARS = "";
@@ -142,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
         if (numMoves <= bestSolution)
             stars = THREE_STARS;
 
-        if (numMoves != BestScores.DEFAULT_BEST) {
+        if (numMoves != BestScores.NOT_COMPLETED) {
             return stars + "(" + numMoves + ")";
         } else {
             return "";
@@ -163,12 +170,13 @@ public class MainActivity extends AppCompatActivity {
         }
         if (state.isSurelyLoosing()) {
             String s = String.format(getResources().getString(R.string.levellost), currentLevel);
+            s += "\n";
             textView.setText(s);
             return;
         }
         String stars = getStarsAndScore(bestScores.getBest(state.getLevelName()), bestSolution);
         String s = String.format(getResources().getString(R.string.level), currentLevel);
-        s += "\n" + stars;
+        s += "\n" + stars + "\n";
         textView.setText(s);
     }
 
