@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 /**
  * Created by nico on 18/02/17.
@@ -19,7 +18,7 @@ public class BestScores extends SQLiteOpenHelper {
     private static final String L_NAME = "level_id";
     private static final String L_BEST = "level_best";
 
-    public static final int DEFAULT_BEST = 99999;
+    public static final int NOT_COMPLETED = Integer.MAX_VALUE;
 
     public static BestScores getInstance(Context ctx) {
 
@@ -97,7 +96,7 @@ public class BestScores extends SQLiteOpenHelper {
             return best;
         } else {
             cursor.close();
-            return DEFAULT_BEST;
+            return NOT_COMPLETED;
         }
     }
 
@@ -107,14 +106,4 @@ public class BestScores extends SQLiteOpenHelper {
         return db.rawQuery(query,null);
     }
 
-
-    public void updateBestIfNecessary(String name, int numMoves) {
-        if (insertData(name, numMoves)) {
-            return;
-        }
-        int oldBest = getBest(name);
-        if (numMoves < oldBest) {
-            updateData(name, numMoves);
-        }
-    }
 }
