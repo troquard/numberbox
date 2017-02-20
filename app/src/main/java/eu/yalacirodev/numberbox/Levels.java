@@ -28,13 +28,22 @@ class Levels {
             "coton02.nbj", // 35 moves
             "coton03.nbj", // EASY PEASY 41 moves
             "coton04.nbj", // 33 moves
-            "coton05.nbj", // HARD 61 moves
             "coton06.nbj", // EASY best 60 moves (better solution might exist)
             "coton07.nbj", // 31 moves
             "coton08.nbj", // EASY 21 moves
             "coton09.nbj", // 32 moves
             "coton10.nbj", // 43 moves
-            "coton11.nbj" // 50 moves
+            "coton11.nbj", // 50 moves
+            "coton05.nbj", // HARD 61 moves
+            "dashpot00.nbj",
+            "dashpot01.nbj",
+            "dashpot02.nbj",
+            "full00.nbj",
+            "full01.nbj",
+            "full02.nbj",
+            "full03.nbj",
+            "full04.nbj",
+            "full05.nbj"
     };
 
     private static Levels instance = null;
