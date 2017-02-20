@@ -2,10 +2,11 @@ package eu.yalacirodev.numberbox;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
 
 /**
  * Created by nico on 13/02/17.
@@ -18,9 +19,9 @@ public class TestLevels {
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         Solver solver = new Solver(
-                Levels.getInstance(appContext).levels[0],
+                Levels.getInstance(appContext).levels[5],
                 Solver.EXHAUSTIVE);
-        assertEquals(solver.solve(),true);
+        assertThat(solver.solve(), is(true));
 
     }
 }
