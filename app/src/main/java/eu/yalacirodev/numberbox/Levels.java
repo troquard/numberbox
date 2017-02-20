@@ -4,6 +4,7 @@ package eu.yalacirodev.numberbox;
 import android.content.Context;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -46,8 +47,11 @@ class Levels {
             "full05.nbj"
     };
 
+    private static final int DEFAULT_BEST = 1017;
+
     private static Levels instance = null;
-    State[] levels = null;
+    State[] levels;
+    int[] bests;
 
     private Levels() {
         // defeat instantiation
@@ -57,8 +61,10 @@ class Levels {
         if (instance == null) {
             instance = new Levels();
             instance.levels = new State[LEVELS_FILENAMES.length];
+            instance.bests = new int[LEVELS_FILENAMES.length];
             for (int i = 0 ; i < LEVELS_FILENAMES.length ; i++) {
                 instance.levels[i] = getStateFromJSONFile(LEVELS_FILENAMES[i], context);
+                instance.bests[i] = getBestFromJSONFile(LEVELS_FILENAMES[i], context);
             }
         }
         return instance;
@@ -69,7 +75,6 @@ class Levels {
         String JSONString = null;
 
         try {
-            System.out.println(filename);
             InputStream input = context.getAssets().open(filename);
             BufferedReader reader = new BufferedReader(new InputStreamReader(input));
             StringBuilder sb = new StringBuilder();
@@ -92,6 +97,40 @@ class Levels {
         }
 
         return null;
+    }
+
+    private static int getBestFromJSONFile(String filename, Context context) {
+
+        String JSONString = null;
+
+        try {
+            InputStream input = context.getAssets().open(filename);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+            StringBuilder sb = new StringBuilder();
+            String line = reader.readLine();
+            while (line != null) {
+                sb.append(line);
+                line = reader.readLine();
+            }
+            reader.close();
+            input.close();
+            JSONString = sb.toString();
+        } catch (IOException e) {
+            System.out.println("IO: Something wrong with " + filename);
+        }
+
+        try {
+            JSONObject jo = new JSONObject(JSONString);
+            if (jo.has("bestsolution")) {
+                return jo.getInt("bestsolution");
+            } else {
+                return jo.getInt("bestknownsolution");
+            }
+        } catch (JSONException e) {
+            System.out.println("JSON: Something wrong with " + filename);
+        }
+
+        return DEFAULT_BEST;
     }
 
 }
