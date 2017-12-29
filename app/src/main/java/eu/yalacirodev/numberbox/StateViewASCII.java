@@ -9,7 +9,7 @@ import android.widget.TextView;
  * Created by nico on 08/02/17.
  */
 
-public class StateViewASCII extends TextView implements StateView {
+public class StateViewASCII extends android.support.v7.widget.AppCompatTextView implements StateView {
 
     public StateViewASCII(Context context, AttributeSet attrs) {
         super(context, attrs);
