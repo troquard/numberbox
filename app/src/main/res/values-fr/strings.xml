@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NumberBox</string>
+    <string name="pushmode">mode\npoussée</string>
+    <string name="jumpmode">mode\nsaut</string>
+    <string name="level">NIVEAU %d</string>
+    <string name="levelcompleted">NIVEAU %d\nCOMPLET</string>
+    <string name="levellost">NIVEAU %d\nPERDU</string>
+    <string name="next">suivant</string>
+    <string name="retry">refaire</string>
+</resources>

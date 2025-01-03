@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:id="@+id/main_layout">
+
+
+        <eu.yalacirodev.numberbox.StateViewASCII
+            android:id="@+id/my_display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:typeface="monospace"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:lineSpacingMultiplier="0.75"
+            android:textIsSelectable="false" />
+
+
+</LinearLayout>

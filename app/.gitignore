@@ -1,0 +1,6 @@
+/build
+signing.properties
+app-release.apk
+*.apk
+*~
+/release

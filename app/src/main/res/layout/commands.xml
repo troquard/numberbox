@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:columnCount="3"
+    android:rowCount="3">
+
+    <!-- android:text="⟲" -->
+    <Button
+        app:backgroundTint="@color/colorPrimaryDark"
+        android:text="@string/retry"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:onClick="actionRetry"
+        android:id="@+id/retry" />
+
+    <TextView
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textColor="@color/colorAccent"
+        android:id="@+id/info" />
+
+    <!-- android:text="⇛" -->
+    <Button
+        app:backgroundTint="@color/colorPrimaryDark"
+        android:text="@string/next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:onClick="actionNextLevel"
+        android:id="@+id/next" />
+
+    <Button
+        android:text="@string/jumpmode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:onClick="actionJumpMode"
+        android:id="@+id/jump" />
+
+    <!-- android:text="▲" -->
+    <Button
+        android:text="▲"
+        app:backgroundTint="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:onClick="actionNorth"
+        android:id="@+id/up" />
+
+    <Button
+        android:text="@string/pushmode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:onClick="actionPushMode"
+        android:id="@+id/push" />
+
+    <!-- android:text="◀" -->
+    <Button
+        android:text="◀"
+        app:backgroundTint="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:onClick="actionWest"
+        android:id="@+id/left" />
+
+    <!-- android:text="▼" -->
+    <Button
+        android:text="▼"
+        app:backgroundTint="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:onClick="actionSouth"
+        android:id="@+id/down" />
+
+    <!-- android:text="▶" -->
+    <Button
+        android:text="▶"
+        app:backgroundTint="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:onClick="actionEast"
+        android:id="@+id/right" />
+
+</GridLayout>
